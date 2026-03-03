@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+:root {
+    /* Colors - Light Theme */
+    --c-primary: #9F5F80;
+    /* Vino suave */
+    --c-secondary: #F4C2C2;
+    /* Rosa polvo */
+    --c-accent: #D8B4E2;
+    /* Malva suave */
+    --c-bg: #F3EDE8;
+    /* Beige claro */
+    --c-bg-card: #FFFFFF;
+    /* Blanco */
+    --c-text: #333333;
+    --c-text-light: #555555;
+    --c-border: rgba(159, 95, 128, 0.2);
+    --c-overlay: rgba(243, 237, 232, 0.85);
+
+    /* Fonts */
+    --f-title: 'Playfair Display', serif;
+    --f-text: 'Montserrat', sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    /* Setup */
+    --max-width: 1200px;
+    --header-height: 70px;
+    --radius: 12px;
+    --radius-lg: 24px;
+    --transition: 0.3s ease;
+
+    /* Textures */
+    --pattern-dots: radial-gradient(rgba(159, 95, 128, 0.15) 1px, transparent 1px);
+    --pattern-lines: repeating-linear-gradient(45deg, rgba(159, 95, 128, 0.05), rgba(159, 95, 128, 0.05) 1px, transparent 1px, transparent 20px);
+    --pattern-size: 24px 24px;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --c-primary: #D8B4E2;
+    /* Malva suave */
+    --c-secondary: #9F5F80;
+    /* Vino suave */
+    --c-accent: #F4C2C2;
+    /* Rosa polvo */
+    --c-bg: #1a1618;
+    /* Darker tone */
+    --c-bg-card: #2d262a;
+    /* Card dark tone */
+    --c-text: #F3EDE8;
+    --c-text-light: #c5b5bf;
+    --c-border: rgba(216, 180, 226, 0.2);
+    --c-overlay: rgba(26, 22, 24, 0.9);
+
+    /* Textures Dark */
+    --pattern-dots: radial-gradient(rgba(216, 180, 226, 0.1) 1px, transparent 1px);
+    --pattern-lines: repeating-linear-gradient(45deg, rgba(216, 180, 226, 0.05), rgba(216, 180, 226, 0.05) 1px, transparent 1px, transparent 20px);
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    font-family: var(--f-text);
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    /* Mobile default */
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--f-title);
+    color: var(--c-primary);
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    font-weight: 700;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: var(--space-sm);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    /* Adds resilience to responsive bounds */
+}
+
+ul {
+    list-style: none;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    padding: 0 var(--space-sm);
+}
+
+/* Desktop override container */
+@media (min-width: 768px) {
+    .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+    }
+}
+
+/* Typography Scale Desktop */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    body {
+        font-size: 1.125rem;
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-sm {
+    margin-top: var(--space-sm);
+}
+
+.mt-md {
+    margin-top: var(--space-md);
+}
+
+.mt-lg {
+    margin-top: var(--space-lg);
+}
+
+.section-padding {
+    padding: var(--space-lg) 0;
+}
+
+@media (min-width: 768px) {
+    .section-padding {
+        padding: var(--space-xl) 0;
+    }
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.7rem;
+    border-radius: 50px;
+    font-family: var(--f-text);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition);
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn--primary {
+    background-color: var(--c-primary);
+    color: var(--c-bg);
+}
+
+.btn--primary:hover {
+    background-color: var(--c-secondary);
+    color: #1a1618;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(159, 95, 128, 0.3);
+}
+
+.btn--outline {
+    background-color: transparent;
+    border: 2px solid var(--c-primary);
+    color: var(--c-primary);
+}
+
+.btn--outline:hover {
+    background-color: var(--c-primary);
+    color: var(--c-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(159, 95, 128, 0.3);
+}
+
+.btn--full {
+    width: 100%;
+}

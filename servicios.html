@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SofiDreams | Servicios</title>
+    <meta name="description"
+        content="SofiDreams: Catálogo de servicios. Limpieza, Gel Polish, Esculpidas, Nail Art y más.">
+    <link rel="canonical" href="https://example.com/servicios.html" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/styles.css?v=1">
+    <link rel="stylesheet" href="css/components.css?v=1">
+    <link rel="stylesheet" href="css/sections.css?v=1">
+
+    <style>
+        /* Specific styles for Services page tabs */
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: var(--space-lg);
+        }
+
+        .filter-tab {
+            padding: 10px 20px;
+            border: 2px solid var(--c-primary);
+            background: transparent;
+            color: var(--c-primary);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-family: var(--f-text);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--c-primary);
+            color: var(--c-bg);
+        }
+
+        .service-filtered-item {
+            display: none;
+        }
+
+        .service-filtered-item.show {
+            display: flex;
+            animation: fadeIn 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="index.html" class="header__logo">
+                <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772496538/logoSofiDreams_k01aeq.png"
+                    alt="SofiDreams Logo" width="120" height="40">
+            </a>
+            <button class="header__toggle" id="nav-toggle" aria-label="Abrir menú">
+                <i class='bx bx-menu'></i>
+            </button>
+            <nav class="header__nav" id="nav-menu">
+                <ul class="header__list">
+                    <li><a href="index.html" class="header__link" data-i18n="nav_home">Inicio</a></li>
+                    <li><a href="servicios.html" class="header__link header__link--active"
+                            data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="index.html#trabajos" class="header__link" data-i18n="nav_works">Mis Trabajos</a></li>
+                    <li><a href="index.html#acerca" class="header__link" data-i18n="nav_about">SofiDreams</a></li>
+                    <li><a href="index.html#contacto" class="header__link" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+                <div class="header__actions">
+                    <button class="header__action-btn" id="theme-toggle" aria-label="Cambiar tema">
+                        <i class='bx bx-moon'></i>
+                    </button>
+                    <button class="header__action-btn" id="lang-toggle" aria-label="Cambiar idioma">
+                        <i class='bx bx-world'></i> <span class="lang-text">ES</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <a href="tel:+00000000000" class="floating-btn floating-btn--phone" aria-label="Llamar">
+            <i class='bx bxs-phone-call'></i>
+        </a>
+        <a href="https://wa.me/00000000000?text=Hola,%20quisiera%20saber%20mas%20sobre%20los%20servicios"
+            class="floating-btn floating-btn--whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <i class='bx bxl-whatsapp'></i>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="section-padding" style="margin-top: 50px;">
+            <div class="container text-center">
+                <h1 class="section-title" data-i18n="nav_services" style="margin-bottom: 30px;">Catálogo de Servicios
+                </h1>
+
+                <!-- Filter Tabs -->
+                <div class="filter-tabs" id="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">Todos</button>
+                    <button class="filter-tab" data-filter="basic" data-i18n="tab_basic">Manicura básica</button>
+                    <button class="filter-tab" data-filter="semi" data-i18n="tab_semi">Manicura semipermanente</button>
+                    <button class="filter-tab" data-filter="acrylic" data-i18n="tab_acrylic">Uñas acrílicas /
+                        gel</button>
+                    <button class="filter-tab" data-filter="art" data-i18n="tab_art">Nail Art</button>
+                </div>
+
+                <div class="services__grid" id="all-services-grid">
+
+                    <!-- BASIC -->
+                    <article class="service-card service-filtered-item show" data-category="basic">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495759/limpiezaycorte_ndfyid.jpg"
+                                alt="Limpieza y Corte" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_clean">Limpieza y Corte</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('clean')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Limpieza%20y%20Corte%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="service-card service-filtered-item show" data-category="basic">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495804/esmaltadotradicional_x5qfpl.jpg"
+                                alt="Esmaltado Tradicional" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_classic">Esmaltado Tradicional</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('classic')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Esmaltado%20Tradicional%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SEMI -->
+                    <article class="service-card service-filtered-item show" data-category="semi">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495793/gelpolish_wlqjby.jpg"
+                                alt="Gel Polish" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_gel">Gel Polish</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('gel')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Gel%20Polish%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="service-card service-filtered-item show" data-category="semi">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495765/refuerzonatural_djcjpf.jpg"
+                                alt="Refuerzo Natural" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_reinforce">Refuerzo Natural</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('reinforce')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Refuerzo%20Natural%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ACRYLIC -->
+                    <article class="service-card service-filtered-item show" data-category="acrylic">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495775/Esculpidas_bny8ne.jpg"
+                                alt="Esculpidas" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_sculpted">Esculpidas</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('sculpted')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Esculpidas%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="service-card service-filtered-item show" data-category="acrylic">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495765/babyboomer_mcxild.jpg"
+                                alt="Baby Boomer" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_babyboomer">Baby Boomer</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('babyboomer')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Baby%20Boomer%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="service-card service-filtered-item show" data-category="acrylic">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495799/french_q9nji0.jpg"
+                                alt="French" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_french">French</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('french')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20French%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ART -->
+                    <article class="service-card service-filtered-item show" data-category="art">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495796/dise%C3%B1ospersonalizados_qxlbd1.jpg"
+                                alt="Diseños Personalizados" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_art">Diseños Personalizados</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('art')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Diseños%20Personalizados%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="service-card service-filtered-item show" data-category="art">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495794/pedrer%C3%ADa_bfdaes.jpg"
+                                alt="Pedrería" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_stones">Pedrería</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('stones')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Pedreria%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="service-card service-filtered-item show" data-category="art">
+                        <div class="service-card__img-wrapper">
+                            <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772495775/dibujosamano_heobsl.jpg"
+                                alt="Dibujos a mano" loading="lazy">
+                        </div>
+                        <div class="service-card__content">
+                            <h3 data-i18n="service_draw">Dibujos a mano</h3>
+                            <div class="service-card__actions">
+                                <button class="btn btn--details" onclick="openServiceModalExt('draw')"
+                                    data-i18n="btn_details">Detalles</button>
+                                <a href="https://wa.me/00000000000?text=Hola,%20me%20interesa%20el%20servicio%20Dibujos%20a%20mano%20me%20podrian%20dar%20mas%20informacion"
+                                    target="_blank" class="btn btn--whatsapp"><i class='bx bxl-whatsapp'></i> <span
+                                        data-i18n="btn_consult">Consultar</span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__socials">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-tiktok'></i></a>
+                <a href="#"><i class='bx bxl-youtube'></i></a>
+            </div>
+            <div class="footer__links">
+                <a href="privacidad.html" data-i18n="footer_privacy">Política de Privacidad</a>
+            </div>
+            <div class="footer__disclaimer mt-sm">
+                <p data-i18n="disclaimer">Esta página web no es oficial y solo es una página web de ejemplo. Las
+                    imágenes y videos no buscan suplantar la identidad de nadie, ya sea vivo o muerto, y fueron
+                    generadas con inteligencia artificial.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Modal Extended -->
+    <div id="service-modal-ext" class="modal">
+        <div class="modal__content">
+            <span class="modal__close"
+                onclick="document.getElementById('service-modal-ext').classList.remove('modal--active')"
+                aria-label="Cerrar">&times;</span>
+            <h3 id="modal-title-ext" class="modal__title"></h3>
+            <p id="modal-desc-ext" class="modal__desc"></p>
+        </div>
+    </div>
+
+    <!-- Vendor Watermark -->
+    <a href="https://nextwebcr.com" target="_blank" class="vendor-watermark" aria-label="Desarrollado por NextWeb CR">
+        <img src="https://res.cloudinary.com/dicrov8ka/image/upload/v1772083376/logo_h9plf1.jpg" alt="NextWeb CR Logo"
+            width="32" height="32" loading="lazy">
+        <span>Desarrollado por <strong>NextWeb CR</strong></span>
+    </a>
+
+    <!-- Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/69633d7c987b03197cb20051/1jelqgcbd';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+
+    <script src="js/theme.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Extended modal logic for all services
+        const extData = {
+            clean: { titleKey: 'service_clean', descKey: 'service_clean_desc' },
+            classic: { titleKey: 'service_classic', descKey: 'service_classic_desc' },
+            gel: { titleKey: 'service_gel', descKey: 'service_gel_desc' },
+            reinforce: { titleKey: 'service_reinforce', descKey: 'service_reinforce_desc' },
+            sculpted: { titleKey: 'service_sculpted', descKey: 'service_sculpted_desc' },
+            babyboomer: { titleKey: 'service_babyboomer', descKey: 'service_babyboomer_desc' },
+            french: { titleKey: 'service_french', descKey: 'service_french_desc' },
+            art: { titleKey: 'service_art', descKey: 'service_art_desc' },
+            stones: { titleKey: 'service_stones', descKey: 'service_stones_desc' },
+            draw: { titleKey: 'service_draw', descKey: 'service_draw_desc' }
+        };
+
+        const modalExt = document.getElementById('service-modal-ext');
+        const modalTitleExt = document.getElementById('modal-title-ext');
+        const modalDescExt = document.getElementById('modal-desc-ext');
+
+        window.openServiceModalExt = function (id) {
+            if (extData[id]) {
+                let titleVal = "";
+                let descVal = "";
+                if (window.getText && window.currentLang) {
+                    titleVal = window.getText(window.currentLang, extData[id].titleKey) || "";
+                    descVal = window.getText(window.currentLang, extData[id].descKey) || "";
+                }
+                modalTitleExt.textContent = titleVal;
+                modalDescExt.textContent = descVal;
+                modalExt.classList.add('modal--active');
+            }
+        };
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-tab');
+        const filterItems = document.querySelectorAll('.service-filtered-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                filterItems.forEach(item => {
+                    item.classList.remove('show');
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.add('show');
+                    }
+                });
+            });
+        });
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === modalExt) {
+                modalExt.classList.remove('modal--active');
+            }
+        });
+    </script>
+</body>
+
+</html>

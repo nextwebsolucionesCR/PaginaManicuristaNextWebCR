@@ -1,0 +1,397 @@
+/* =========================================
+   WORKS (Mis Trabajos)
+   ========================================= */
+.works {
+    background-color: var(--c-bg-card);
+    background-image: var(--pattern-lines);
+    background-size: var(--pattern-size);
+}
+
+.works__subtitle {
+    font-size: 1.5rem;
+    color: var(--c-text);
+    margin-bottom: var(--space-md);
+    font-family: var(--f-title);
+}
+
+.works__gallery {
+    column-count: 1;
+    column-gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.works__img {
+    width: 100%;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-sm);
+    display: block;
+    cursor: pointer;
+    transition: transform var(--transition);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.works__img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 600px) {
+    .works__gallery {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 992px) {
+    .works__gallery {
+        column-count: 3;
+    }
+}
+
+/* Modal specific for images */
+.modal--image {
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+}
+
+.modal__img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   ABOUT (SofiDreams)
+   ========================================= */
+.about {
+    background-color: var(--c-bg);
+    background-image: var(--pattern-dots);
+    background-size: var(--pattern-size);
+}
+
+.about__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.about__img-wrapper {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about__img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+
+.about__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about__content p {
+    color: var(--c-text-light);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+@media (min-width: 992px) {
+    .about__container {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-xl);
+    }
+
+    .about__img-wrapper {
+        width: 40%;
+    }
+
+    .about__content {
+        width: 55%;
+    }
+}
+
+/* =========================================
+   CLIENTS (Vimeo + Text Reviews)
+   ========================================= */
+.clients {
+    background-color: var(--c-bg-card);
+    background-image: var(--pattern-lines);
+    background-size: var(--pattern-size);
+}
+
+.clients__vimeo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+.vimeo-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vimeo-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 600px) {
+    .clients__vimeo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .clients__vimeo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Infinite Carousel */
+.clients__carousel {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scrollLeft 40s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.review-card {
+    min-width: 300px;
+    background-color: var(--c-bg);
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-card .stars {
+    color: #f5b041;
+    font-size: 1.2rem;
+}
+
+.review-card .name {
+    font-weight: 600;
+    font-family: var(--f-title);
+    color: var(--c-primary);
+}
+
+.review-card .text {
+    color: var(--c-text-light);
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   CONTACT
+   ========================================= */
+.contact {
+    background-color: var(--c-bg);
+    background-image: var(--pattern-dots);
+    background-size: var(--pattern-size);
+}
+
+.contact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+.contact__form-container {
+    background-color: var(--c-bg-card);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    align-self: start;
+}
+
+.form-group {
+    margin-bottom: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--c-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px 15px;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    font-family: var(--f-text);
+    font-size: 1rem;
+    transition: border-color var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--c-primary);
+}
+
+.contact__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.contact__widgets {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: 100%;
+    overflow: hidden;
+}
+
+.contact__widgets a,
+.contact__widgets iframe {
+    max-width: 100%;
+}
+
+.contact__local-img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.maps-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.map-iframe-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.map-iframe-container.active {
+    display: block;
+}
+
+.map-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (min-width: 992px) {
+    .contact__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+    background-color: #1a1618;
+    /* Always dark */
+    color: #fff;
+    padding: var(--space-lg) 0;
+    text-align: center;
+}
+
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.footer__socials {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 1.8rem;
+}
+
+.footer__socials a {
+    color: #fff;
+    transition: color var(--transition), transform var(--transition);
+}
+
+.footer__socials a:hover {
+    color: var(--c-secondary);
+    transform: translateY(-3px);
+}
+
+.footer__links a {
+    color: #ccc;
+    text-decoration: underline;
+    font-size: 1rem;
+}
+
+.footer__links a:hover {
+    color: #fff;
+}
+
+.footer__disclaimer p {
+    font-size: 0.85rem;
+    color: #999;
+    max-width: 600px;
+    margin: 0 auto;
+}
